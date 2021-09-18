@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": "Australia Domestic Airlines",
+  "projection": {"type": "equirectangular"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/aus.geo%20topo.json",
+        "format": {"type": "topojson", "feature": "aus.geo"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+      },
+      "mark": "rule",
+      "encoding": {
+        "longitude": {"field": "dep longitude", "type": "quantitative"},
+        "latitude": {"field": "dep latitude", "type": "quantitative"},
+        "longitude2": {"field": "arr longitude"},
+        "latitude2": {"field": "arr latitude"},
+        "size": {
+          "field": "Passenger_Trips",
+          "type": "quantitative",
+          "aggregate": "mean"
+        },
+        "color": {"field": "City1"},
+        "tooltip": [
+          {"field": "City1", "type": "nominal", "title": "Depature City"},
+          {"field": "City2", "type": "nominal", "title": "Arrival City"},
+          {
+            "field": "Passenger_Trips",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "title": "passenger"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
