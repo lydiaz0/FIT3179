@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 500,
+  "title": {
+    "text": "Australia Domestic Airlines in 2019",
+    "fontSize": 20,
+    "color": "#3C3D3E"
+  },
+  "projection": {"type": "equirectangular"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/aus.geo%20topo.json",
+        "format": {"type": "topojson", "feature": "aus.geo"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+      },
+      "transform": [{"filter": "datum.Year == 2019"}],
+      "mark": {"type": "rule", "color": "#A6A5A4"},
+      "encoding": {
+        "longitude": {"field": "dep longitude", "type": "quantitative"},
+        "latitude": {"field": "dep latitude", "type": "quantitative"},
+        "longitude2": {"field": "arr longitude"},
+        "latitude2": {"field": "arr latitude"},
+        "tooltip": [
+          {"field": "Year", "type": "nominal", "title": "Travel time"},
+          {"field": "City1", "type": "nominal", "title": "Depature City"},
+          {"field": "City2", "type": "nominal", "title": "Arrival City"},
+          {
+            "field": "Passenger_Trips",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "title": "Average Number of Passengers",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+      },
+      "transform": [{"filter": "datum.Year == 2019"}],
+      "mark": {"type": "circle", "color": "#2174a3"},
+      "encoding": {
+        "longitude": {"field": "dep longitude", "type": "quantitative"},
+        "latitude": {"field": "dep latitude", "type": "quantitative"},
+        "size": {
+          "field": "Passenger_Trips",
+          "type": "quantitative",
+          "aggregate": "average",
+          "title": "Average Number of Passengers",
+          "scale": {
+            "type": "threshold",
+            "domain": [10000, 50000, 100000],
+            "range": [50, 100, 200, 300]
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+      },
+      "transform": [{"filter": "datum.Year == 2019"}],
+      "mark": {"type": "circle", "color": "#2174a3"},
+      "encoding": {
+        "longitude": {"field": "arr longitude", "type": "quantitative"},
+        "latitude": {"field": "arr latitude", "type": "quantitative"},
+        "size": {
+          "field": "Passenger_Trips",
+          "type": "quantitative",
+          "aggregate": "average",
+          "scale": {
+            "type": "threshold",
+            "domain": [10000, 50000, 100000],
+            "range": [50, 100, 200, 300]
+          }
+        }
+      }
+    }
+  ],
+  "config": {}
+}
