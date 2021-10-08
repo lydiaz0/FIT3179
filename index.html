@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework8</title>
+    <title>Australian Domestic Airline Analysis (2019 vs 2020)</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
@@ -19,61 +19,11 @@
 <body>
     <h1>Vega-Lite Visual</h1>
     <div id = "vis"></div>
-    <script>
-        var vlSpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 500,
-  "title": "Australia Domestic Airlines",
-  "projection": {"type": "equirectangular"},
-  "layer": [
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/aus.geo%20topo.json",
-        "format": {"type": "topojson", "feature": "aus.geo"}
-      },
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
-      },
-       "selection": { "year_highlight": {
-          "type": "multi",
-           "fields": ["Year"],
-            "bind": "legend"}
-            },
-      "mark": "rule",
-      "encoding": {
-        "longitude": {
-          "field": "dep longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "dep latitude",
-          "type": "quantitative"
-        },
-        "longitude2": {"field": "arr longitude"},
-        "latitude2": {"field": "arr latitude"},
-        "size": {"field": "Passenger_Trips",
-        "type":"quantitative",
-        "aggregate":"mean"}, 
-        "color":{"field":"Year"},
-        "opacity": { "condition": 
-        {"selection":
-        "year_highlight", "value": 0.8},
-        "value": 0.1},
-        "tooltip": [
-      {"field": "City1", "type": "nominal", "title": "Depature City"},
-      {"field": "City2", "type": "nominal","title":"Arrival City"},
-      {"field":"Passenger_Trips","type":"quantitative","aggregate":"mean","title":"passenger"},
-      {"field":"Year","type":"nominal","title":"Travel time"}
-    ]
-      }
-    }
-  ]
-};
-        vegaEmbed('#vis',vlSpec);
+    <script type="text/javascript">
+        var specVis1 = "./map_2019.vl.json";
+        vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
     </script>
 </body>
 </html>
