@@ -7,7 +7,7 @@
     "fontSize": 18,
     "color": "#3C3D3E"
   },
-  "background": "#f2f5f7",
+  "background":"#f2f5f7",
   "params": [
     {
       "name": "Passenger_above",
