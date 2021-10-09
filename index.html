@@ -20,10 +20,16 @@
     <h1>Australian Domestic Airline Analysis (2019 vs 2020)</h1>
     
     <div id="vis1" class="vis-container"></div>
+    <div id="vis2" class="vis-container"></div>
      
     <script type="text/javascript">
         var specVis1 = "./map_2019.vl.json";
         vegaEmbed('#vis1', specVis1, { "actions": false }).then(function (result) {
+      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+    }).catch(console.error);
+        
+        var specVis2 = "./map_2020.vl.json";
+        vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
     </script>
