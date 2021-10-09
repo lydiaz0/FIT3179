@@ -7,7 +7,51 @@
     "fontSize": 20,
     "color": "#3C3D3E"
   },
-  "projection": {"type": "equirectangular"},
+  "params": [
+    {
+      "name": "Passenger_above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 200000,
+        "step": 10000,
+        "name": "Minimum Passenger: "
+      }
+    },
+    {
+      "name": "zoom_level",
+      "value": 800,
+      "bind": {
+        "input": "range",
+        "min": 500,
+        "max": 2000,
+        "step": 50,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [134, -25.61],
+      "bind": {
+        "input": "select",
+        "options": [
+          [145, -37.95],
+          [151, -33.86],
+          [153, -27.47],
+          [153, -28],
+          [139, -34.93]
+        ],
+        "labels": ["Melbourne", "Sydney", "Brisbane", "Gold Coast", "Adelaide"],
+        "name": "Center to: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equirectangular",
+    "center": {"expr": "center_to"},
+    "scale": {"expr": "zoom_level"}
+  },
   "layer": [
     {
       "data": {
@@ -18,9 +62,12 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
       },
-      "transform": [{"filter": "datum.Year == 2019"}],
+      "transform": [
+        {"filter": "datum.Year == 2019"},
+        {"filter": "datum.Passenger_Trips > Passenger_above"}
+      ],
       "mark": {"type": "rule", "color": "#A6A5A4"},
       "encoding": {
         "longitude": {"field": "dep longitude", "type": "quantitative"},
@@ -43,9 +90,12 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
       },
-      "transform": [{"filter": "datum.Year == 2019"}],
+      "transform": [
+        {"filter": "datum.Year == 2019"},
+        {"filter": "datum.Passenger_Trips > Passenger_above"}
+      ],
       "mark": {"type": "circle", "color": "#2174a3"},
       "encoding": {
         "longitude": {"field": "dep longitude", "type": "quantitative"},
@@ -65,9 +115,12 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline.csv"
+        "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
       },
-      "transform": [{"filter": "datum.Year == 2019"}],
+      "transform": [
+        {"filter": "datum.Year == 2019"},
+        {"filter": "datum.Passenger_Trips > Passenger_above"}
+      ],
       "mark": {"type": "circle", "color": "#2174a3"},
       "encoding": {
         "longitude": {"field": "arr longitude", "type": "quantitative"},
