@@ -22,7 +22,7 @@
     },
     {
       "name": "zoom_level",
-      "value": 800,
+      "value": 650,
       "bind": {
         "input": "range",
         "min": 500,
