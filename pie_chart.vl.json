@@ -1,0 +1,134 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": "container",
+  "height": "300",
+  "title": {
+    "text": "Travelling Distance Distribution over Years",
+    "anchor": "middle",
+    "fontSize": 20,
+    "color": "#3C3D3E"
+  },
+  "background": "#f2f5f7",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
+  },
+  "hconcat": [
+    {
+      "transform": [
+        {"filter": "datum.Year == 2019"},
+        {
+          "window": [
+            {"op": "sum", "field": "Passenger_Trips", "as": "year_sum"}
+          ],
+          "frame": [null, null]
+        },
+        {
+          "calculate": "datum.Passenger_Trips/datum.year_sum * 100",
+          "as": "percentage"
+        }
+      ],
+      "title": {
+        "text": "2019",
+        "anchor": "middle",
+        "color": "#808080",
+        "fontSize": 15
+      },
+      "encoding": {
+        "color": {
+          "field": "haul",
+          "sort": ["below 1k", "1k-2k", "2k-3k", "over 3k"],
+          "title": "Travelling Distance(km)",
+          "type": "nominal",
+          "scale": {"range": ["#D1DDDB", "#85B8CB", "#2174a3", "#283B42"]}
+        },
+        "theta": {
+          "field": "Passenger_Trips",
+          "aggregate": "sum",
+          "stack": true
+        },
+        "tooltip": [
+          {"field": "haul", "title": "Travelling Distance(km)"},
+          {
+            "field": "percentage",
+            "aggregate": "sum",
+            "title": "Percentage(%)",
+            "format": ".2f"
+          }
+        ]
+      },
+      "layer": [
+        {"mark": "arc"},
+        {
+          "mark": {"type": "text", "radius": 115},
+          "encoding": {
+            "text": {
+              "field": "percentage",
+              "format": ".2f",
+              "type": "nominal",
+              "aggregate": "sum"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [
+        {"filter": "datum.Year == 2020"},
+        {
+          "window": [
+            {"op": "sum", "field": "Passenger_Trips", "as": "year_sum"}
+          ],
+          "frame": [null, null]
+        },
+        {
+          "calculate": "datum.Passenger_Trips/datum.year_sum * 100",
+          "as": "percentage"
+        }
+      ],
+      "title": {
+        "text": "2020",
+        "anchor": "middle",
+        "color": "#808080",
+        "fontSize": 15
+      },
+      "encoding": {
+        "color": {
+          "field": "haul",
+          "sort": ["below 1k", "1k-2k", "2k-3k", "over 3k"],
+          "title": "Travelling Distance(km)",
+          "type": "nominal",
+          "scale": {"range": ["#D1DDDB", "#85B8CB", "#1D6A96", "#283B42"]}
+        },
+        "theta": {
+          "field": "Passenger_Trips",
+          "aggregate": "sum",
+          "stack": true
+        },
+        "tooltip": [
+          {"field": "haul", "title": "Travelling Distance(km)"},
+          {
+            "field": "percentage",
+            "aggregate": "sum",
+            "title": "Percentage(%)",
+            "format": ".2f"
+          }
+        ]
+      },
+      "layer": [
+        {"mark": {"type": "arc", "outerRadius": 100}},
+        {
+          "mark": {"type": "text", "radius": 115},
+          "encoding": {
+            "text": {
+              "field": "percentage",
+              "format": ".2f",
+              "type": "nominal",
+              "aggregate": "sum"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+}
