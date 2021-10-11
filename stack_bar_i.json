@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Number of Passengers over Years(International)",
+    "anchor": "middle",
+    "fontSize": 20,
+    "color": "#3C3D3E"
+  },
+  "background": "#f2f5f7",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/overseas_arrivals_departures.csv"
+  },
+  "spacing": 0,
+  "params": [
+    {
+      "name": "selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "A", "D"],
+        "labels": ["Show All", "Arrival", "Depature"],
+        "name": "Arrival/Depature "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "transform": [
+        {"filter": "datum.Year == 2019"},
+        {"filter": "selection == null || datum.Type == selection"}
+      ],
+      "title": {"text": "2019", "color": "#808080", "fontSize": 15},
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Month", "axis": null, "sort": []},
+        "x": {
+          "aggregate": "mean",
+          "field": "Passenger (M)",
+          "title": "Number of Passengers",
+          "axis": {"format": "s", "titleColor": "#808080"},
+          "sort": "descending"
+        },
+        "color": {"field": "Year", "legend": null},
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "Month", "type": "nominal", "title": "Month"},
+          {
+            "field": "Passenger (M)",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "title": "Number of Passengers",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 20,
+      "view": {"stroke": null},
+      "mark": {"type": "text", "allign": "center", "color": "#3C3D3E"},
+      "encoding": {
+        "y": {"field": "Month", "axis": null, "sort": []},
+        "text": {"field": "Month", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Year == 2020"},
+        {"filter": "selection == null || datum.Type == selection"}
+      ],
+      "title": {"text": "2020", "color": "#808080", "fontSize": 15},
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Month", "axis": null, "sort": []},
+        "x": {
+          "aggregate": "mean",
+          "field": "Passenger (M)",
+          "title": "Number of Passengers",
+          "axis": {"format": "s", "titleColor": "#808080"},
+          "scale": {"domain": [0, 2000000]}
+        },
+        "color": {
+          "field": "Year",
+          "legend": null,
+          "scale": {"range": ["#2174a3", "#85B8CB"]}
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "Month", "type": "nominal", "title": "Month"},
+          {
+            "field": "Passenger (M)",
+            "type": "quantitative",
+            "aggregate": "mean",
+            "title": "Number of Passengers",
+            "format": ".0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}

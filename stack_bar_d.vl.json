@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Number of Passengers over Years(Domestic)",
+    "anchor": "middle",
+    "fontSize": 20,
+    "color": "#3C3D3E"
+  },
+  "background": "#f2f5f7",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
+  },
+  "spacing": 0,
+  "hconcat": [
+    {
+      "transform": [{"filter": "datum.Year == 2019"}],
+      "title": {"text": "2019", "color": "#808080", "fontSize": 15},
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Month_num", "axis": null, "sort": []},
+        "x": {
+          "aggregate": "sum",
+          "field": "Passenger_Trips",
+          "title": "Number of Passengers",
+          "axis": {"format": "s", "titleColor": "#808080"},
+          "sort": "descending"
+        },
+        "color": {"field": "Year", "legend": null},
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "Month_num", "type": "nominal", "title": "Month"},
+          {
+            "field": "Passenger_Trips",
+            "type": "quantitative",
+            "aggregate": "sum",
+            "title": "Number of Passengers",
+            "format": ".0f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 20,
+      "view": {"stroke": null},
+      "mark": {"type": "text", "allign": "center", "color": "#3C3D3E"},
+      "encoding": {
+        "y": {"field": "Month_num", "axis": null, "sort": []},
+        "text": {"field": "Month_num", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [{"filter": {"field": "Year", "equal": 2020}}],
+      "title": {"text": "2020", "color": "#808080", "fontSize": 15},
+      "mark": "bar",
+      "encoding": {
+        "y": {"field": "Month_num", "axis": null, "sort": []},
+        "x": {
+          "aggregate": "sum",
+          "field": "Passenger_Trips",
+          "title": "Number of Passengers",
+          "axis": {"format": "s", "titleColor": "#808080"},
+          "scale": {"domain": [0, 5000000]}
+        },
+        "color": {
+          "field": "Year",
+          "legend": null,
+          "scale": {"range": ["#2174a3", "#85B8CB"]}
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "Month_num", "type": "nominal", "title": "Month"},
+          {
+            "field": "Passenger_Trips",
+            "type": "quantitative",
+            "aggregate": "sum",
+            "title": "Number of Passengers",
+            "format": ".0f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
