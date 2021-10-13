@@ -4,7 +4,6 @@
   "height": 500,
   "title": {
     "text": "Australia Domestic Airlines in 2020",
-    "fontSize": 18,
     "color": "#3C3D3E"
   },
   "background": "#f2f5f7",
@@ -22,7 +21,7 @@
     },
     {
       "name": "zoom_level",
-      "value": 800,
+      "value": 650,
       "bind": {
         "input": "range",
         "min": 500,
@@ -150,5 +149,22 @@
       ]
     }
   ],
-  "config": {}
+  "config": {
+    "view": {"stroke": null},
+    "axis":{"labelFont":"Ubuntu",
+    "titleFont":"Ubuntu"},
+    "legend": {
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "header":{
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "title":{
+      "font":"Ubuntu",
+      "fontSize":16,
+      "fontWeight":500
+    }
+  }
 }
