@@ -6,6 +6,7 @@
     "color": "#3C3D3E"
   },
   "background": "#f2f5f7",
+  "width":"container",
   "data": {
     "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/overseas_arrivals_departures.csv"
   },
