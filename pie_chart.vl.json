@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": "300",
   "title": {
     "text": "Travelling Distance Distribution over Years",
     "anchor": "middle",
@@ -130,5 +129,22 @@
       ]
     }
   ],
-  "config": {}
+  "config": {
+    "view": {"stroke": null},
+    "axis":{"labelFont":"Ubuntu",
+    "titleFont":"Ubuntu"},
+    "legend": {
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "header":{
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "title":{
+      "font":"Ubuntu",
+      "fontSize":16,
+      "fontWeight":500
+    }
+  }
 }
