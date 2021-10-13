@@ -5,6 +5,7 @@
     "anchor": "middle",
     "color": "#3C3D3E"
   },
+  "width":"container",
   "background": "#f2f5f7",
   "data": {
     "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
