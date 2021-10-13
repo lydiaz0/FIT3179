@@ -3,7 +3,6 @@
   "title": {
     "text": "Number of Passengers over Years(Domestic)",
     "anchor": "middle",
-    "fontSize": 20,
     "color": "#3C3D3E"
   },
   "background": "#f2f5f7",
@@ -13,53 +12,77 @@
   "spacing": 0,
   "hconcat": [
     {
-      "transform": [{"filter": "datum.Year == 2019"}],
+      "transform": [{"filter": "datum.Year == 2019"},
+      {"aggregate": [{
+        "op":"sum",
+        "field":"Passenger_Trips",
+        "as":"Passenger"
+      }],
+      "groupby": ["Month_num","Year"]
+      }],
       "title": {"text": "2019", "color": "#808080", "fontSize": 15},
-      "mark": "bar",
+      "layer":[{"mark": "bar",
       "encoding": {
         "y": {"field": "Month_num", "axis": null, "sort": []},
         "x": {
-          "aggregate": "sum",
-          "field": "Passenger_Trips",
+          "field": "Passenger",
           "title": "Number of Passengers",
           "axis": {"format": "s", "titleColor": "#808080"},
-          "sort": "descending"
+          "sort": "descending",
+          "type":"quantitative"
         },
         "color": {"field": "Year", "legend": null},
         "tooltip": [
           {"field": "Year", "type": "ordinal", "title": "Year"},
           {"field": "Month_num", "type": "nominal", "title": "Month"},
           {
-            "field": "Passenger_Trips",
+            "field": "Passenger",
             "type": "quantitative",
-            "aggregate": "sum",
             "title": "Number of Passengers",
             "format": ".0f"
           }
         ]
       }
     },
+    {"mark":{"type":"text","dy":-50,"dx":-91,"font":"Ubuntu"},
+    "encoding": {
+      "text":{"field":"Passenger","type":"quantitative"},
+      "color":{"value":"black"},
+      "opacity":{
+        "condition":{"test":"datum.Month_num == 'April'",
+        "value":1},
+        "value":0
+      }
+    }
+    }]},   
     {
       "width": 20,
       "view": {"stroke": null},
-      "mark": {"type": "text", "allign": "center", "color": "#3C3D3E"},
+      "mark": {"type": "text", "allign": "center", "color": "#3C3D3E","font":"Ubuntu"},
       "encoding": {
         "y": {"field": "Month_num", "axis": null, "sort": []},
         "text": {"field": "Month_num", "type": "nominal"}
       }
     },
     {
-      "transform": [{"filter": {"field": "Year", "equal": 2020}}],
+      "transform": [{"filter": {"field": "Year", "equal": 2020}},
+      {"aggregate": [{
+        "op":"sum",
+        "field":"Passenger_Trips",
+        "as":"Passenger"
+      }],
+      "groupby": ["Month_num","Year"]
+      }],
       "title": {"text": "2020", "color": "#808080", "fontSize": 15},
-      "mark": "bar",
+      "layer":[{"mark": "bar",
       "encoding": {
         "y": {"field": "Month_num", "axis": null, "sort": []},
         "x": {
-          "aggregate": "sum",
-          "field": "Passenger_Trips",
+          "field": "Passenger",
           "title": "Number of Passengers",
           "axis": {"format": "s", "titleColor": "#808080"},
-          "scale": {"domain": [0, 5000000]}
+          "scale": {"domain": [0, 5000000]},
+          "type":"quantitative"
         },
         "color": {
           "field": "Year",
@@ -70,15 +93,42 @@
           {"field": "Year", "type": "ordinal", "title": "Year"},
           {"field": "Month_num", "type": "nominal", "title": "Month"},
           {
-            "field": "Passenger_Trips",
+            "field": "Passenger",
             "type": "quantitative",
-            "aggregate": "sum",
             "title": "Number of Passengers",
             "format": ".0f"
           }
         ]
       }
+    },
+    {"mark":{"type":"text","dy":-50,"dx":-76,"font":"Ubuntu"},
+    "encoding": {
+      "text":{"field":"Passenger","type":"quantitative"},
+      "color":{"value":"black"},
+      "opacity":{
+        "condition":{"test":"datum.Month_num == 'April'",
+        "value":1},
+        "value":0
+      }
     }
+    }]}    
   ],
-  "config": {"view": {"stroke": null}}
+  "config": {
+    "view": {"stroke": null},
+    "axis":{"labelFont":"Ubuntu",
+    "titleFont":"Ubuntu"},
+    "legend": {
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "header":{
+      "labelFont":"Ubuntu",
+      "titleFont":"Ubuntu"
+    },
+    "title":{
+      "font":"Ubuntu",
+      "fontSize":16,
+      "fontWeight":500
+    }
+    }
 }
