@@ -96,7 +96,7 @@
         {"filter": "datum.Year == 2020"},
         {"filter": "datum.Passenger_Trips > Passenger_above"}
       ],
-      "mark": {"type": "circle", "color": "#D1DDDB"},
+      "mark": {"type": "circle", "color": "#85B8CB"},
       "encoding": {
         "longitude": {"field": "dep longitude", "type": "quantitative"},
         "latitude": {"field": "dep latitude", "type": "quantitative"},
@@ -121,7 +121,7 @@
         {"filter": "datum.Year == 2020"},
         {"filter": "datum.Passenger_Trips > Passenger_above"}
       ],
-      "mark": {"type": "circle", "color": "#D1DDDB"},
+      "mark": {"type": "circle", "color": "#85B8CB"},
       "encoding": {
         "longitude": {"field": "arr longitude", "type": "quantitative"},
         "latitude": {"field": "arr latitude", "type": "quantitative"},
