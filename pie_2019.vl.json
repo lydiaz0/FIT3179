@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Travelling Distance Distribution in 2019",
+    "anchor": null,
+    "fontSize": 16,
+    "color": "#3C3D3E"
+  },
+  "width": "container",
+  "background": "#f2f5f7",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
+  },
+  "transform": [
+    {"filter": "datum.Year == 2019"},
+    {
+      "window": [{"op": "sum", "field": "Passenger_Trips", "as": "year_sum"}],
+      "frame": [null, null]
+    },
+    {
+      "calculate": "datum.Passenger_Trips/datum.year_sum * 100",
+      "as": "percentage"
+    }
+  ],
+  "encoding": {
+    "color": {
+      "field": "haul",
+      "sort": ["< 1,000", "1,000-2,000", "2,000-3,000", "> 3,000"],
+      "title": "Travelling Distance(km)",
+      "type": "nominal",
+      "scale": {"range": ["#D1DDDB", "#85B8CB", "#2174a3", "#283B42"]},
+      "legend": null
+    },
+    "theta": {"field": "Passenger_Trips", "aggregate": "sum", "stack": true},
+    "tooltip": [
+      {"field": "haul", "title": "Travelling Distance(km)"},
+      {
+        "field": "percentage",
+        "aggregate": "sum",
+        "title": "Percentage(%)",
+        "format": ".2f"
+      }
+    ]
+  },
+  "layer": [
+    {"mark": {"type": "arc", "stroke": "#f2f5f7"}},
+    {
+      "mark": {"type": "text", "radius": 115, "font": "Ubuntu"},
+      "encoding": {
+        "text": {
+          "field": "percentage",
+          "format": ".2f",
+          "type": "nominal",
+          "aggregate": "sum"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"labelFont": "Ubuntu", "titleFont": "Ubuntu"},
+    "legend": {"labelFont": "Ubuntu", "titleFont": "Ubuntu"},
+    "header": {"labelFont": "Ubuntu", "titleFont": "Ubuntu"},
+    "title": {"font": "Ubuntu", "fontSize": 16, "fontWeight": 500}
+  }
+}
