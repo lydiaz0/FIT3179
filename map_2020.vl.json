@@ -65,7 +65,7 @@
         "url": "https://raw.githubusercontent.com/lydiaz0/FIT3179/main/airline1.csv"
       },
       "transform": [
-        {"filter": "datum.Year == 2019"},
+        {"filter": "datum.Year == 2020"},
         {"filter": "datum.Passenger_Trips > Passenger_above"}
       ],
       "mark": {"type": "rule", "color": "#A6A5A4"},
@@ -84,13 +84,6 @@
             "aggregate": "mean",
             "title": "Average Number of Passengers",
             "format": ".0f"
-          },
-          {
-            "field": "Passenger_Load_Factor",
-            "type": "quantitative",
-            "aggregate": "average",
-            "title": "Average Load Factor(%)",
-            "format": ".2f"
           }
         ]
       }
@@ -103,7 +96,7 @@
         {"filter": "datum.Year == 2020"},
         {"filter": "datum.Passenger_Trips > Passenger_above"}
       ],
-      "mark": {"type": "circle", "color": "#85B8CB"},
+      "mark": {"type": "circle", "color": "#D1DDDB"},
       "encoding": {
         "longitude": {"field": "dep longitude", "type": "quantitative"},
         "latitude": {"field": "dep latitude", "type": "quantitative"},
@@ -128,25 +121,21 @@
         {"filter": "datum.Year == 2020"},
         {"filter": "datum.Passenger_Trips > Passenger_above"}
       ],
-      "layer": [
-        {
-          "mark": {"type": "circle", "color": "#85B8CB"},
-          "encoding": {
-            "longitude": {"field": "arr longitude", "type": "quantitative"},
-            "latitude": {"field": "arr latitude", "type": "quantitative"},
-            "size": {
-              "field": "Passenger_Trips",
-              "type": "quantitative",
-              "aggregate": "average",
-              "scale": {
-                "type": "threshold",
-                "domain": [10000, 50000, 100000],
-                "range": [50, 100, 200, 300]
-              }
-            }
+      "mark": {"type": "circle", "color": "#D1DDDB"},
+      "encoding": {
+        "longitude": {"field": "arr longitude", "type": "quantitative"},
+        "latitude": {"field": "arr latitude", "type": "quantitative"},
+        "size": {
+          "field": "Passenger_Trips",
+          "type": "quantitative",
+          "aggregate": "average",
+          "scale": {
+            "type": "threshold",
+            "domain": [10000, 50000, 100000],
+            "range": [50, 100, 200, 300]
           }
         }
-      ]
+      }
     }
   ],
   "config": {
