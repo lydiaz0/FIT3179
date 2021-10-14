@@ -36,13 +36,14 @@
       "bind": {
         "input": "select",
         "options": [
+          [134, -25.61],
           [145, -37.95],
           [151, -33.86],
           [153, -27.47],
           [153, -28],
           [139, -34.93]
         ],
-        "labels": ["Melbourne", "Sydney", "Brisbane", "Gold Coast", "Adelaide"],
+        "labels": ["Default","Melbourne", "Sydney", "Brisbane", "Gold Coast", "Adelaide"],
         "name": "Center to: "
       }
     }
