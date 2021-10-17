@@ -45,7 +45,7 @@
         ]
       }
     },
-    {"mark":{"type":"text","dy":-50,"dx":-91,"font":"Ubuntu"},
+    {"mark":{"type":"text","dy":-50,"dx":-93,"font":"Ubuntu"},
     "encoding": {
       "text":{"field":"Passenger","type":"quantitative"},
       "color":{"value":"black"},
@@ -56,7 +56,7 @@
       }
     }
     },
-    {"mark":{"type":"text","dy":110,"dx":-95,"font":"Ubuntu"},
+    {"mark":{"type":"text","dy":110,"dx":-97,"font":"Ubuntu"},
     "encoding": {
       "text":{"field":"Passenger","type":"quantitative"},
       "color":{"value":"black"},
@@ -124,7 +124,7 @@
       }
     }
     },
-    {"mark":{"type":"text","dy":110,"dx":-9,"font":"Ubuntu"},
+    {"mark":{"type":"text","dy":110,"dx":-7,"font":"Ubuntu"},
     "encoding": {
       "text":{"field":"Passenger","type":"quantitative"},
       "color":{"value":"black"},
